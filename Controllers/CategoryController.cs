@@ -30,14 +30,21 @@ namespace BlogApi.Controllers
             [FromRoute] int id,
             [FromServices] BlogApiDataContext context)
         {
-            var category = await context
+            try
+            {
+                var category = await context
                 .Categories
                 .FirstOrDefaultAsync(x => x.Id == id);
 
-            if (category == null)
-                return NotFound();
+                if (category == null)
+                    return NotFound(new ResultViewModel<Category>("Conteúdo não encontrado."));
 
-            return Ok(category);
+                return Ok(new ResultViewModel<Category>(category));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new ResultViewModel<List<Category>>("01XE2 - Não foi possivel incluir a categoria"));
+            }
         }
 
         [HttpPost("v1/categories")]
@@ -64,11 +71,11 @@ namespace BlogApi.Controllers
             }
             catch (DbUpdateException ex)
             {
-                return StatusCode(500, "01XE9 - Não foi possivel incluir a categoria");
+                return StatusCode(500, new ResultViewModel<Category>("01XE9 - Não foi possivel incluir a categoria"));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "01XE10 - Falha interna no servidor");
+                return StatusCode(500, new ResultViewModel<Category>("01XE10 - Falha interna no servidor"));
             }
         }
 
@@ -93,15 +100,15 @@ namespace BlogApi.Controllers
                 context.Categories.Update(category);
                 await context.SaveChangesAsync();
 
-                return Ok(category);
+                return Ok(new ResultViewModel<Category>(category));
             }
             catch (DbUpdateException ex)
             {
-                return StatusCode(500, "01XE11 - Não foi possivel incluir a categoria");
+                return StatusCode(500, new ResultViewModel<Category>("01XE11 - Não foi possivel incluir a categoria"));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "01EX12 Falha interna no servidor");
+                return StatusCode(500, new ResultViewModel<Category>("01EX12 Falha interna no servidor"));
             }
         }
 
@@ -126,11 +133,11 @@ namespace BlogApi.Controllers
             }
             catch (DbUpdateException ex)
             {
-                return StatusCode(500, "01EX13 - Não foi possivel incluir a categoria");
+                return StatusCode(500, new ResultViewModel<Category>("01EX13 - Não foi possivel incluir a categoria"));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "01EX14 - Falha interna no servidor");
+                return StatusCode(500, new ResultViewModel<Category>("01EX14 - Falha interna no servidor"));
             }
 
         }
