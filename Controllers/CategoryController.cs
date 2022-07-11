@@ -12,9 +12,17 @@ namespace BlogApi.Controllers
         [HttpGet("v1/categories")]
         public async Task<IActionResult> GetAsync([FromServices] BlogApiDataContext context)
         {
-            var categories = await context.Categories.ToListAsync();
+            try
+            {
+                var categories = await context.Categories.ToListAsync();
 
-            return Ok(categories);
+                return Ok(new ResultViewModel<List<Category>>(categories));
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(500, new ResultViewModel<List<Category>>("01XE1 - Não foi possivel incluir a categoria"));
+            }
         }
 
         [HttpGet("v1/categories/{id:int}")]
