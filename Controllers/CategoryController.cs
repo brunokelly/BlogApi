@@ -1,4 +1,5 @@
 ﻿using BlogApi.Data;
+using BlogApi.Extensions;
 using BlogApi.Models;
 using BlogApi.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -53,7 +54,7 @@ namespace BlogApi.Controllers
             [FromServices] BlogApiDataContext context)
         {
             if (!ModelState.IsValid)
-                return BadRequest();
+                return BadRequest(new ResultViewModel<Category>(ModelState.GetErrors()));
 
             try
             {
