@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "L/5wUVS8LdVBQfcLQSL3mZNH507NK394m4X/Rbz6n+JF+OQoAg+DMtzs2F722DCYYcMH+mBy55eBfQLtIxaYLg==",
+  "dgSpecHash": "biI0a3z9AGGA2K6iJgMCi2lRnbx/2mG+fE+OO/VAp4NpcnlGdMO8QUJIBIOx6R9LsHg18b6hv+/BVw/H1EBdqA==",
   "success": true,
   "projectFilePath": "D:\\Dev\\BlogApi\\BlogApi.csproj",
   "expectedPackageFiles": [
@@ -33,6 +33,7 @@
     "C:\\Users\\bruno\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\bruno\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\bruno\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\bruno\\.nuget\\packages\\secureidentity\\1.0.3\\secureidentity.1.0.3.nupkg.sha512",
     "C:\\Users\\bruno\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\bruno\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
     "C:\\Users\\bruno\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",

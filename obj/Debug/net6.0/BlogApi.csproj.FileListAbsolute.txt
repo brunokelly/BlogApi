@@ -55,3 +55,4 @@ D:\Dev\BlogApi\obj\Debug\net6.0\BlogApi.pdb
 D:\Dev\BlogApi\obj\Debug\net6.0\BlogApi.genruntimeconfig.cache
 D:\Dev\BlogApi\obj\Debug\net6.0\ref\BlogApi.dll
 D:\Dev\BlogApi\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Dev\BlogApi\bin\Debug\net6.0\SecureIdentity.dll

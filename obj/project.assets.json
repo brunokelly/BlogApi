@@ -412,6 +412,15 @@
           }
         }
       },
+      "SecureIdentity/1.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/SecureIdentity.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/SecureIdentity.dll": {}
+        }
+      },
       "System.Collections.Immutable/6.0.0": {
         "type": "package",
         "dependencies": {
@@ -1375,6 +1384,18 @@
         "version.txt"
       ]
     },
+    "SecureIdentity/1.0.3": {
+      "sha512": "p83XY1M+0LCEiP7R0Bxg2hxRYywG70j4nqF0GttVuYrKguWAzO4580sKPzy/z2EOii29WKUKH7vy4uNJTUFEpA==",
+      "type": "package",
+      "path": "secureidentity/1.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0/SecureIdentity.dll",
+        "secureidentity.1.0.3.nupkg.sha512",
+        "secureidentity.nuspec"
+      ]
+    },
     "System.Collections.Immutable/6.0.0": {
       "sha512": "l4zZJ1WU2hqpQQHXz1rvC3etVZN+2DLmQMO79FhOTZHMn8tDRr+WU287sbomD0BETlmKDn0ygUgVy9k5xkkJdA==",
       "type": "package",
@@ -1866,7 +1887,8 @@
     "net6.0": [
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.7",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.6",
-      "Microsoft.EntityFrameworkCore.design >= 6.0.6"
+      "Microsoft.EntityFrameworkCore.design >= 6.0.6",
+      "SecureIdentity >= 1.0.3"
     ]
   },
   "packageFolders": {
@@ -1919,6 +1941,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[6.0.6, )"
+          },
+          "SecureIdentity": {
+            "target": "Package",
+            "version": "[1.0.3, )"
           }
         },
         "imports": [
