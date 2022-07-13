@@ -33,6 +33,7 @@ namespace BlogApi.Controllers
         {
             try
             {
+
                 var category = await context
                 .Categories
                 .FirstOrDefaultAsync(x => x.Id == id);
