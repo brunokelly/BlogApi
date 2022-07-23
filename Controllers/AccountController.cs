@@ -52,12 +52,38 @@ namespace BlogApi.Controllers
             }
         }
 
-        [HttpPost("v1/login")]
-        public IActionResult Login([FromServices] TokenService tokenService)
+        [HttpPost("v1/accounts/login")]
+        public async Task<IActionResult> Login([FromBody] LoginViewModel model, [FromServices] BlogApiDataContext context
+            , [FromServices] TokenService tokenService)
         {
-            var token = tokenService.GenerateToken(null);
+            if (!ModelState.IsValid)
+                return BadRequest(new ResultViewModel<string>(ModelState.GetErrors()));
 
-            return Ok(token);
+            var user = await context
+                .Users
+                .AsNoTracking()
+                .Include(x => x.Roles)
+                .FirstOrDefaultAsync(x => x.Email == model.Email);
+
+            if (user == null)
+                return StatusCode(401, new ResultViewModel<Category>("Email ou senha invalida."));
+
+            if (!PasswordHasher.Verify(user.PasswordHash, model.Password))
+            {
+                return StatusCode(401, new ResultViewModel<Category>("Email ou senha invalida."));
+            }
+
+            try
+            {
+                var token = tokenService.GenerateToken(user);
+
+                return Ok(new ResultViewModel<string>(token, null));
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
     }
