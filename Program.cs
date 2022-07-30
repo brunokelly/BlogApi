@@ -2,7 +2,10 @@ using BlogApi;
 using BlogApi.Data;
 using BlogApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.IO.Compression;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -11,14 +14,25 @@ ConfigureAuthentication(builder);
 ConfigureMvc(builder);
 ConfigureServices(builder);
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
 LoadConfiguration(app);
 
+app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseStaticFiles();
 app.MapControllers();
 app.UseStaticFiles();
+app.UseResponseCompression();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 app.Run();
 
 void LoadConfiguration(WebApplication app)
@@ -53,20 +67,34 @@ void ConfigureAuthentication(WebApplicationBuilder builder)
 
 void ConfigureMvc(WebApplicationBuilder builder)
 {
+    builder.Services.AddMemoryCache();
+    builder.Services.AddResponseCompression(options =>
+    {
+        // options.Providers.Add<BrotliCompressionProvider>();
+        options.Providers.Add<GzipCompressionProvider>();
+        // options.Providers.Add<CustomCompressionProvider>();
+    });
+    builder.Services.Configure<GzipCompressionProviderOptions>(options =>
+    {
+        options.Level = CompressionLevel.Optimal;
+    });
     builder
         .Services
         .AddControllers()
         .ConfigureApiBehaviorOptions(options => { options.SuppressModelStateInvalidFilter = true; })
-        .AddJsonOptions(options =>
+        .AddJsonOptions(x =>
         {
-            options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-            options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
-        }); ;
+            x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+            x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
+        });
 }
 
 void ConfigureServices(WebApplicationBuilder builder)
 {
-    builder.Services.AddDbContext<BlogApiDataContext>();
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    builder.Services.AddDbContext<BlogApiDataContext>(
+        options =>
+            options.UseSqlServer(connectionString));
     builder.Services.AddTransient<TokenService>();
     builder.Services.AddTransient<EmailService>();
 }
