@@ -12,6 +12,7 @@ D:\Dev\BlogApi\bin\Debug\net6.0\BlogApi.runtimeconfig.json
 D:\Dev\BlogApi\bin\Debug\net6.0\BlogApi.dll
 D:\Dev\BlogApi\bin\Debug\net6.0\BlogApi.pdb
 D:\Dev\BlogApi\bin\Debug\net6.0\Humanizer.dll
+D:\Dev\BlogApi\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\Dev\BlogApi\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
 D:\Dev\BlogApi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
 D:\Dev\BlogApi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -26,6 +27,7 @@ D:\Dev\BlogApi\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
 D:\Dev\BlogApi\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 D:\Dev\BlogApi\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 D:\Dev\BlogApi\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\Dev\BlogApi\bin\Debug\net6.0\SecureIdentity.dll
 D:\Dev\BlogApi\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
 D:\Dev\BlogApi\bin\Debug\net6.0\System.Drawing.Common.dll
 D:\Dev\BlogApi\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
@@ -54,5 +56,3 @@ D:\Dev\BlogApi\obj\Debug\net6.0\refint\BlogApi.dll
 D:\Dev\BlogApi\obj\Debug\net6.0\BlogApi.pdb
 D:\Dev\BlogApi\obj\Debug\net6.0\BlogApi.genruntimeconfig.cache
 D:\Dev\BlogApi\obj\Debug\net6.0\ref\BlogApi.dll
-D:\Dev\BlogApi\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-D:\Dev\BlogApi\bin\Debug\net6.0\SecureIdentity.dll
