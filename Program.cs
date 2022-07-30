@@ -4,6 +4,7 @@ using BlogApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigureAuthentication(builder);
@@ -15,6 +16,7 @@ LoadConfiguration(app);
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseStaticFiles();
 app.MapControllers();
 app.UseStaticFiles();
 app.Run();
@@ -54,7 +56,12 @@ void ConfigureMvc(WebApplicationBuilder builder)
     builder
         .Services
         .AddControllers()
-        .ConfigureApiBehaviorOptions(options => { options.SuppressModelStateInvalidFilter = true; });
+        .ConfigureApiBehaviorOptions(options => { options.SuppressModelStateInvalidFilter = true; })
+        .AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+            options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
+        }); ;
 }
 
 void ConfigureServices(WebApplicationBuilder builder)
